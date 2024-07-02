@@ -83,6 +83,7 @@ public class MemberControllerTest {
                 responseFields(
                         fieldWithPath("status").description("응답 상태"),
                         fieldWithPath("message").description("응답 메시지").type(JsonFieldType.STRING).optional(),
+                        fieldWithPath("data").description("응답 데이터"),
                         fieldWithPath("data.id").description("사용자 ID"),
                         fieldWithPath("data.account").description("계정"),
                         fieldWithPath("data.name").description("이름").type(JsonFieldType.STRING).optional(),
@@ -118,6 +119,7 @@ public class MemberControllerTest {
                 responseFields(
                         fieldWithPath("status").description("응답 상태"),
                         fieldWithPath("message").description("응답 메시지").type(JsonFieldType.STRING).optional(),
+                        fieldWithPath("data").description("응답 데이터"),
                         fieldWithPath("data.result").description("탈퇴 결과")
                 )));
     }
@@ -159,6 +161,7 @@ public class MemberControllerTest {
                 responseFields(
                         fieldWithPath("status").description("응답 상태"),
                         fieldWithPath("message").description("응답 메시지").type(JsonFieldType.STRING).optional(),
+                        fieldWithPath("data").description("응답 데이터"),
                         fieldWithPath("data.result").description("수정 결과"),
                         fieldWithPath("data.name").description("이름").type(JsonFieldType.STRING).optional(),
                         fieldWithPath("data.age").description("나이").type(JsonFieldType.NUMBER).optional()

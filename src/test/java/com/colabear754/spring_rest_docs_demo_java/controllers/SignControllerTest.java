@@ -82,6 +82,7 @@ public class SignControllerTest {
                 responseFields(
                         fieldWithPath("status").description("응답 상태"),
                         fieldWithPath("message").description("응답 메시지").type(JsonFieldType.STRING).optional(),
+                        fieldWithPath("data").description("응답 데이터"),
                         fieldWithPath("data.id").description("사용자 ID"),
                         fieldWithPath("data.account").description("사용자 계정"),
                         fieldWithPath("data.name").description("사용자 이름").optional(),
@@ -123,6 +124,7 @@ public class SignControllerTest {
                 responseFields(
                         fieldWithPath("status").description("응답 상태"),
                         fieldWithPath("message").description("응답 메시지").type(JsonFieldType.STRING).optional(),
+                        fieldWithPath("data").description("응답 데이터"),
                         fieldWithPath("data.name").description("사용자 이름"),
                         fieldWithPath("data.type").description("사용자 유형"),
                         fieldWithPath("data.accessToken").description("액세스 토큰"),
