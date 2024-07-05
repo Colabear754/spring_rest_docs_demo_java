@@ -22,6 +22,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
+import static org.springframework.restdocs.headers.HeaderDocumentation.headerWithName;
+import static org.springframework.restdocs.headers.HeaderDocumentation.requestHeaders;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.modifyHeaders;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
@@ -80,6 +82,7 @@ public class MemberControllerTest {
         action.andDo(document("member/info",
                 DocumentExtension.requestPreprocessor(modifyHeaders().set(HttpHeaders.AUTHORIZATION, "Bearer {access_token}")),
                 DocumentExtension.responsePreprocessor(),
+                requestHeaders(headerWithName(HttpHeaders.AUTHORIZATION).description("인증 토큰")),
                 responseFields(
                         fieldWithPath("status").description("응답 상태"),
                         fieldWithPath("message").description("응답 메시지").type(JsonFieldType.STRING).optional(),
@@ -116,6 +119,7 @@ public class MemberControllerTest {
         action.andDo(document("member/delete",
                 DocumentExtension.requestPreprocessor(modifyHeaders().set(HttpHeaders.AUTHORIZATION, "Bearer {access_token}")),
                 DocumentExtension.responsePreprocessor(),
+                requestHeaders(headerWithName(HttpHeaders.AUTHORIZATION).description("인증 토큰")),
                 responseFields(
                         fieldWithPath("status").description("응답 상태"),
                         fieldWithPath("message").description("응답 메시지").type(JsonFieldType.STRING).optional(),
@@ -152,6 +156,7 @@ public class MemberControllerTest {
         action.andDo(document("member/update",
                 DocumentExtension.requestPreprocessor(modifyHeaders().set(HttpHeaders.AUTHORIZATION, "Bearer {access_token}")),
                 DocumentExtension.responsePreprocessor(),
+                requestHeaders(headerWithName(HttpHeaders.AUTHORIZATION).description("인증 토큰")),
                 requestFields(
                         fieldWithPath("password").description("비밀번호"),
                         fieldWithPath("newPassword").description("새 비밀번호").optional(),

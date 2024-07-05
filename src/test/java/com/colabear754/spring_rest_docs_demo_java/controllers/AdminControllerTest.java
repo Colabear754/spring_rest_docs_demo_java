@@ -22,6 +22,8 @@ import org.springframework.test.web.servlet.ResultActions;
 import java.util.List;
 import java.util.UUID;
 
+import static org.springframework.restdocs.headers.HeaderDocumentation.headerWithName;
+import static org.springframework.restdocs.headers.HeaderDocumentation.requestHeaders;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.modifyHeaders;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
@@ -91,6 +93,7 @@ public class AdminControllerTest {
         action.andDo(document("admin/members",
                 DocumentExtension.requestPreprocessor(modifyHeaders().set(HttpHeaders.AUTHORIZATION, "Bearer {access_token}")),
                 DocumentExtension.responsePreprocessor(),
+                requestHeaders(headerWithName(HttpHeaders.AUTHORIZATION).description("인증 토큰")),
                 memberInfoResponseSnippet()
         ));
     }
@@ -121,6 +124,7 @@ public class AdminControllerTest {
         action.andDo(document("admin/admins",
                 DocumentExtension.requestPreprocessor(modifyHeaders().set(HttpHeaders.AUTHORIZATION, "Bearer {access_token}")),
                 DocumentExtension.responsePreprocessor(),
+                requestHeaders(headerWithName(HttpHeaders.AUTHORIZATION).description("인증 토큰")),
                 memberInfoResponseSnippet()
         ));
     }
