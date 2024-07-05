@@ -20,6 +20,8 @@ repositories {
 
 ext {
     set('snippetsDir', file("build/generated-snippets"))
+    set('docsOutputDir', file('build/docs/asciidoc'))
+    set('projectDocsDir', file('src/main/resources/static/docs'))
 }
 
 dependencies {
@@ -40,12 +42,27 @@ dependencies {
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
+tasks.named('bootJar') {
+    dependsOn 'asciidoctor'
+}
+
 tasks.named('test') {
+    doFirst { delete(snippetsDir) }
     outputs.dir snippetsDir
     useJUnitPlatform()
 }
 
 tasks.named('asciidoctor') {
+    doFirst {
+        delete(docsOutputDir)
+        delete(projectDocsDir)
+    }
     inputs.dir snippetsDir
     dependsOn test
+    doLast {
+        copy {
+            from(docsOutputDir)
+            into(projectDocsDir)
+        }
+    }
 }
